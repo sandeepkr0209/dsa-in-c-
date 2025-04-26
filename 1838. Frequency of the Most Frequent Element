@@ -1,0 +1,15 @@
+class Solution {
+public:
+    int maxFrequency(vector<int>& nums, int k) {
+        int RES=0,L=0,R=0,n=nums.size();
+        long long curSum = 0;
+        sort(nums.begin(), nums.end());
+
+        while(R<n){
+            curSum += nums[R];
+            while ((long)(R-L+1)*nums[R]- curSum>k) curSum -= nums[L++];
+            RES = max(RES, R++-L+1);
+        }
+        return RES;
+    }
+};
